@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { FaTwitter, FaGithub } from 'react-icons/fa';
 import axios from 'axios';
 import './App.css';
 
@@ -76,7 +77,15 @@ const App = () => {
     <div className="App">
       <div className="header">
         <h1>Nostrassets Fair Mint Viewer</h1>
-        <h2>By <a href="https://twitter.com/skyMetaverse" target="_blank" rel="noopener noreferrer">@syskey</a></h2>
+        <p>
+          <a href="https://twitter.com/skyMetaverse" target="_blank" rel="noopener noreferrer">
+            <FaTwitter size={24} style={{ marginRight: '20px' }}/>
+          </a>
+
+          <a href="https://github.com/skyMetaverse" target="_blank" rel="noopener noreferrer">
+            <FaGithub size={24} style={{ marginRight: '20px' }}/>
+          </a>
+        </p>
       </div>
       <table className="myTable">
         <thead>
