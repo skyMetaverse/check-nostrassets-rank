@@ -22,17 +22,26 @@ const App = () => {
       return {
         horoscopName: stakeUserPOS[0].horoscopName,
         hashEnding: stakeUserPOS[0].hashEnding,
-        totalStake_50: stakeUserPOS[0].totalStake,
-        totalStake_100: stakeUserPOS[1].totalStake,
-        totalStake_150: stakeUserPOS[2].totalStake,
-        totalStake_200: stakeUserPOS[3].totalStake,
-        totalStake_250: stakeUserPOS[4].totalStake,
-        totalStake_300: stakeUserPOS[5].totalStake,
-        totalStake_350: stakeUserPOS[6].totalStake,
-        totalStake_400: stakeUserPOS[7].totalStake,
-        totalStake_450: stakeUserPOS[8].totalStake,
-        totalStake_500: stakeUserPOS[9].totalStake,
-        totalStake_550: stakeUserPOS[10].totalStake,
+        totalStake_50: stakeUserPOS[0]?.totalStake || "null",
+        totalStake_100: stakeUserPOS[1]?.totalStake || "null",
+        totalStake_150: stakeUserPOS[2]?.totalStake || "null",
+        totalStake_200: stakeUserPOS[3]?.totalStake || "null",
+        totalStake_250: stakeUserPOS[4]?.totalStake || "null",
+        totalStake_300: stakeUserPOS[5]?.totalStake || "null",
+        totalStake_350: stakeUserPOS[6]?.totalStake || "null",
+        totalStake_400: stakeUserPOS[7]?.totalStake || "null",
+        totalStake_450: stakeUserPOS[8]?.totalStake || "null",
+        totalStake_500: stakeUserPOS[9]?.totalStake || "null",
+        totalStake_550: stakeUserPOS[10]?.totalStake || "null",
+        totalStake_600: stakeUserPOS[11]?.totalStake || "null",
+        totalStake_650: stakeUserPOS[12]?.totalStake || "null",
+        totalStake_700: stakeUserPOS[13]?.totalStake || "null",
+        totalStake_750: stakeUserPOS[14]?.totalStake || "null",
+        totalStake_800: stakeUserPOS[15]?.totalStake || "null",
+        totalStake_850: stakeUserPOS[16]?.totalStake || "null",
+        totalStake_900: stakeUserPOS[17]?.totalStake || "null",
+        totalStake_950: stakeUserPOS[18]?.totalStake || "null",
+        totalStake_1000: stakeUserPOS[19]?.totalStake || "null",
         modifyTime_50: new Date(stakeUserPOS[7].modifyTime).toLocaleString()
       };
     } catch (err) {
@@ -90,20 +99,29 @@ const App = () => {
       <table className="myTable">
         <thead>
           <tr>
-            <th onClick={() => requestSort('horoscopName')}>horoscopName</th>
-            <th onClick={() => requestSort('hashEnding')}>hashEnding</th>
-            <th onClick={() => requestSort('totalStake_50')}>totalStake_50</th>
-            <th onClick={() => requestSort('totalStake_100')}>totalStake_100</th>
-            <th onClick={() => requestSort('totalStake_150')}>totalStake_150</th>
-            <th onClick={() => requestSort('totalStake_200')}>totalStake_200</th>
-            <th onClick={() => requestSort('totalStake_250')}>totalStake_250</th>
-            <th onClick={() => requestSort('totalStake_300')}>totalStake_300</th>
-            <th onClick={() => requestSort('totalStake_350')}>totalStake_350</th>
-            <th onClick={() => requestSort('totalStake_400')}>totalStake_400</th>
-            <th onClick={() => requestSort('totalStake_450')}>totalStake_450</th>
-            <th onClick={() => requestSort('totalStake_500')}>totalStake_500</th>
-            <th onClick={() => requestSort('totalStake_550')}>totalStake_550</th>
-            <th onClick={() => requestSort('modifyTime_50')}>modifyTime_50</th>
+            <th onClick={() => requestSort('horoscopName')}>Name</th>
+            <th onClick={() => requestSort('hashEnding')}>Hash</th>
+            <th onClick={() => requestSort('totalStake_50')}>Stake_50</th>
+            <th onClick={() => requestSort('totalStake_100')}>Stake_100</th>
+            <th onClick={() => requestSort('totalStake_150')}>Stake_150</th>
+            <th onClick={() => requestSort('totalStake_200')}>Stake_200</th>
+            <th onClick={() => requestSort('totalStake_250')}>Stake_250</th>
+            <th onClick={() => requestSort('totalStake_300')}>Stake_300</th>
+            <th onClick={() => requestSort('totalStake_350')}>Stake_350</th>
+            <th onClick={() => requestSort('totalStake_400')}>Stake_400</th>
+            <th onClick={() => requestSort('totalStake_450')}>Stake_450</th>
+            <th onClick={() => requestSort('totalStake_500')}>Stake_500</th>
+            <th onClick={() => requestSort('totalStake_550')}>Stake_550</th>
+            <th onClick={() => requestSort('totalStake_600')}>Stake_600</th>
+            <th onClick={() => requestSort('totalStake_650')}>Stake_650</th>
+            <th onClick={() => requestSort('totalStake_700')}>Stake_700</th>
+            <th onClick={() => requestSort('totalStake_750')}>Stake_750</th>
+            <th onClick={() => requestSort('totalStake_800')}>Stake_800</th>
+            <th onClick={() => requestSort('totalStake_850')}>Stake_850</th>
+            <th onClick={() => requestSort('totalStake_900')}>Stake_900</th>
+            <th onClick={() => requestSort('totalStake_950')}>Stake_950</th>
+            <th onClick={() => requestSort('totalStake_1000')}>Stake_1000</th>
+            <th onClick={() => requestSort('modifyTime_50')}>Update</th>
           </tr>
         </thead>
         <tbody>
@@ -122,6 +140,15 @@ const App = () => {
               <td>{item.totalStake_450}</td>
               <td>{item.totalStake_500}</td>
               <td>{item.totalStake_550}</td>
+              <td>{item.totalStake_600}</td>
+              <td>{item.totalStake_650}</td>
+              <td>{item.totalStake_700}</td>
+              <td>{item.totalStake_750}</td>
+              <td>{item.totalStake_800}</td>
+              <td>{item.totalStake_850}</td>
+              <td>{item.totalStake_900}</td>
+              <td>{item.totalStake_950}</td>
+              <td>{item.totalStake_1000}</td>
               <td>{item.modifyTime_50}</td>
             </tr>
           ))}
