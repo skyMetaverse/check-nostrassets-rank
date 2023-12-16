@@ -49,13 +49,41 @@ const App = () => {
     }
   };
 
+  const getStakeHoroscopList = async () => {
+    let url = `https://market-api.nostrassets.com/stake/getStakeHoroscopList`;
+    let payload = {
+      "stakeId": 1
+    };
+    try {
+      let res = await axios.post(url, payload);
+      let { data } = res?.data;
+      return data.map(item => {
+        return {
+          name: item.name,
+          totalParticipants: item.totalParticipants,
+          totalStake: item.totalStake
+        };
+      });
+    } catch (err) {
+      console.log(err);
+    };
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       let loop = [...Array(12).keys()].map(x => x + 1);
       let res = await Promise.all(loop.map(item => getRankingSummary(item)));
-      setInfo(res);
+      let stakeUserList = await getStakeHoroscopList();
+      let allInfo = [];
+      for(let i = 0; i < res.length; i++){
+        for(let j = 0; j < stakeUserList.length; j++){
+          if(res[i].horoscopName === stakeUserList[j].name){
+            allInfo.push({...res[i], ...stakeUserList[j]})
+          }
+        };
+      };
+      setInfo(allInfo);
     };
-
     fetchData();
   }, []);
 
@@ -88,11 +116,11 @@ const App = () => {
         <h1>Nostrassets Fair Mint Viewer</h1>
         <p>
           <a href="https://twitter.com/skyMetaverse" target="_blank" rel="noopener noreferrer">
-            <FaTwitter size={24} style={{ marginRight: '20px' }}/>
+            <FaTwitter size={24} style={{ marginRight: '20px' }} />
           </a>
 
           <a href="https://github.com/skyMetaverse" target="_blank" rel="noopener noreferrer">
-            <FaGithub size={24} style={{ marginRight: '20px' }}/>
+            <FaGithub size={24} style={{ marginRight: '20px' }} />
           </a>
         </p>
       </div>
@@ -101,6 +129,8 @@ const App = () => {
           <tr>
             <th onClick={() => requestSort('horoscopName')}>Name</th>
             <th onClick={() => requestSort('hashEnding')}>Hash</th>
+            <th onClick={() => requestSort('totalParticipants')}>Participants</th>
+            <th onClick={() => requestSort('totalStake')}>Locked</th>
             <th onClick={() => requestSort('totalStake_50')}>Stake_50</th>
             <th onClick={() => requestSort('totalStake_100')}>Stake_100</th>
             <th onClick={() => requestSort('totalStake_150')}>Stake_150</th>
@@ -121,7 +151,7 @@ const App = () => {
             <th onClick={() => requestSort('totalStake_900')}>Stake_900</th>
             <th onClick={() => requestSort('totalStake_950')}>Stake_950</th>
             <th onClick={() => requestSort('totalStake_1000')}>Stake_1000</th>
-            <th onClick={() => requestSort('modifyTime_50')}>Update</th>
+            {/* <th onClick={() => requestSort('modifyTime_50')}>Update</th> */}
           </tr>
         </thead>
         <tbody>
@@ -129,6 +159,8 @@ const App = () => {
             <tr key={index}>
               <td>{item.horoscopName}</td>
               <td>{item.hashEnding}</td>
+              <td>{item.totalParticipants}</td>
+              <td>{item.totalStake}</td>
               <td>{item.totalStake_50}</td>
               <td>{item.totalStake_100}</td>
               <td>{item.totalStake_150}</td>
@@ -149,7 +181,7 @@ const App = () => {
               <td>{item.totalStake_900}</td>
               <td>{item.totalStake_950}</td>
               <td>{item.totalStake_1000}</td>
-              <td>{item.modifyTime_50}</td>
+              {/* <td>{item.modifyTime_50}</td> */}
             </tr>
           ))}
         </tbody>
